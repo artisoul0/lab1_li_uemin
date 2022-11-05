@@ -48,5 +48,13 @@ public class Write {
         return scalar;
     }
 
+    public static void writeToResult(int[] W, int start, int end) {
+        if (end - start >= 0) {
+            System.arraycopy(W, start, Data.getR(), start, end -
+                    start);
+        }
+    }
+
+
 
 }

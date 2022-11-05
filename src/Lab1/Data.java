@@ -137,27 +137,54 @@ public static int getProcessors(){
 
     //Calculation Rн = d*(B * MVн) + е*Х*(MM * MCн)
 
-//    public static int [] setQuarterVectorR (int[] vectorR, int begin, int end, int d, int[] B, int [][] MVH, int e, int [] X, int[][] MM, int[][] MCH){
-////        int[] resultVectorR = Arrays.copyOfRange(Data.getR(),begin,end);
-//        int [] resultVectorR = Data.getR();
-//        for (int i = 0; i < Data.getN(); i++) {
-//            for (int j = begin; j < end; j++) {
-////                resultVectorR[i] = d * (multiplyVectorMatrix(B,MVH)
-//            }
-//        }
-//
-//    }
+    public static void setResultPartOfVectorR (int di, int B, int MVi, int e, int X, int MM, int MCi ){
+        Write.writeToResult();
+    }
 
-    public static int[] multiplyVectorMatrix(int[] Vector, int[][] Matrix) {
-        int N = Data.N;
-        int[] result = new int[N];
-        for (int i = 0; i < N; i++) {
+    //Method to multiply All Vector and SubMatrix
+
+    public static int[] multiplyVectorBySubMatrix(int[] B, int[][] MV, int
+            start, int end) {
+        int[] K = new int[N];
+        for (int i = 0; i < end - start; i++) {
             for (int j = 0; j < N; j++) {
-                result[i] += Vector[j] * Matrix[j][i];
+                for (int k = 0; k < MV[j].length; k++) {
+                    K[k] += B[j] * MV[j][k];
+                }
             }
+        }
+        return K;
+    }
+
+    public static int [] multiplyScalarAndVector(int scalar, int []Vector){
+        int []result = new int[Data.N];
+        for (int i = 0; i < Data.N; i++) {
+            result[i] = scalar*Vector[i];
         }
         return result;
     }
+
+
+
+    //Method to multiply all Matrix and SubMatrix
+    public static int[][] multiplyMatrixAndSubMatrix(int[][] MM, int[][] MC,
+                                                     int start, int end) {
+        int[][] MT = new int[N][end - start];
+        for (int i = 0; i < N; i++) {
+            int g = 0;
+            for (int j = start; j < end; j++) {
+                MT[i][g] = 0;
+                for (int k = 0; k < N; k++) {
+                    MT[i][g] += MM[i][k] * MC[k][j];
+
+                }
+                g++;
+            }
+        }
+        return MT;
+    }
+
+
     public static int[] addTwoVectors(int[] oneVector, int[] twoVector) {
         int N = Data.N;
         int[] result = new int[N];
