@@ -20,6 +20,12 @@ public class Lab1 extends Thread{
     //    Initialize a semaphore to synchronize T2,T3,T4 with ending calculation 'd' in T1
     public static final Semaphore S1 = new Semaphore(0);
 
+    //    Initialize a semaphore to synchronize the access to the shared resource to d
+    public static final Semaphore S11 = new Semaphore(0);
+
+    //    Initialize a semaphore to synchronize the access to the shared resource to B
+    public static final Semaphore S12 = new Semaphore(0);
+
     //    Initialize a semaphore to synchronize T1,T3,T4 with ending calculation 'd' in T2
     public static final Semaphore S2 = new Semaphore(0);
 
@@ -38,7 +44,7 @@ public class Lab1 extends Thread{
         Semaphore semaphore = new Semaphore(2);
         Data.setN(scanner.nextInt());
         int size = Data.getN();
-
+        Data.setH();
         Thread1 T1 = new Thread1();
         Thread2 T2 = new Thread2();
         Thread3 T3 = new Thread3();

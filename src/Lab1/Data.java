@@ -1,10 +1,19 @@
 package Lab1;
 
+import java.util.Arrays;
+import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Data {
     public static int N; //size
     public static final int PROCESSORS = 4;
     public static int H; //size of quarter
 
+    public static AtomicInteger d = new AtomicInteger();
+
+public static int getProcessors(){
+    return PROCESSORS;
+}
 
     public static void setH(){
         H = N/PROCESSORS;
@@ -93,5 +102,27 @@ public class Data {
     public static void adjustZ(int [] Z){
         Data.Z = Z;
     }
+
+
+    public static int getMaxInQuarterVector(int []Vector){
+        int scalarMaxValue = 0;
+        for (int j : Vector) {
+            if (scalarMaxValue < j) {
+                scalarMaxValue = j;
+            }
+        }
+        return scalarMaxValue;
+    }
+
+    public static boolean firstSet = true;
+    public static int maxScalarD(AtomicInteger d, int di) {
+        if (firstSet) {
+            firstSet = false;
+            return di;
+        }
+        return Math.max(d.get(), di);
+    }
+
+
 
 }
