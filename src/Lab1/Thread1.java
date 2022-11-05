@@ -22,6 +22,7 @@ public class Thread1 extends Thread{
             Lab1.B1.await();
             int H = Data.getH();
             int[] Z = Data.getZ();
+            //Reaching Z1
             int []quarterVector = Arrays.copyOfRange(Z,0,H);
             System.out.println("Quart#1 of Z: " + Arrays.toString(quarterVector));
             //Calculation#1
@@ -35,26 +36,33 @@ public class Thread1 extends Thread{
 
             // The signal to tasks about finishing calculation d.
             Lab1.S1.release(Data.getProcessors() - 1);
+
             // Wait for signals about finishing calculation d in tasks T2,T3,T4.
             Lab1.S2.acquire();
             Lab1.S3.acquire();
             Lab1.S4.acquire();
 
+            //Copy e1 = e
             Lab1.CS1.lock();
-            int scalarE = Data.gete();
+            int e1 = Data.gete();
             Lab1.CS1.unlock();
 
+            //Copy X1 = X
             Lab1.CS2.lock();
-            int[] vectorX = Data.getX();
+            int[] X1 = Data.getX();
             Lab1.CS2.unlock();
 
+            //Copy MM1 = MM
             Lab1.CS3.lock();
-            int [][] matrixMM = Data.getMM();
+            int [][] MM1 = Data.getMM();
             Lab1.CS3.unlock();
 
+            //Copy B1 = B
             Lab1.S12.acquire();
-            int [] vectorB = Data.getB();
+            int [] B1 = Data.getB();
             Lab1.S12.release();
+
+            //Calculation Rн = d*(B * MVн) + е*Х*(MM * MCн)
 
 
 

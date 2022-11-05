@@ -22,6 +22,8 @@ int d2 = 0;
 
             int H = Data.getH();
             int[] Z = Data.getZ();
+
+            //Reaching Z2
             int []quarterVector = Arrays.copyOfRange(Z,H,H*2);
             System.out.println("Quart#2 of Z: " + Arrays.toString(quarterVector));
             //Calculation#1

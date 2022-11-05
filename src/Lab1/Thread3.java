@@ -12,6 +12,7 @@ public class Thread3 extends Thread{
             Lab1.B1.await();
             int H = Data.getH();
             int[] Z = Data.getZ();
+            //Reaching Z3
             int []quarterVector = Arrays.copyOfRange(Z,H*2,H*3);
             System.out.println("Quart#3 of Z: " + Arrays.toString(quarterVector));
             //Calculation#1

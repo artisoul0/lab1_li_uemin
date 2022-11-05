@@ -2,7 +2,7 @@ package Lab1;
 
 import java.util.Arrays;
 import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.Semaphore;
+
 
 public class Thread4 extends Thread{
 int d4 = 0;
@@ -23,6 +23,7 @@ int d4 = 0;
             Lab1.B1.await();
             int H = Data.getH();
             int[] Z = Data.getZ();
+            //Reaching Z4
             int []quarterVector = Arrays.copyOfRange(Z,H*3,H*4);
             System.out.println("Quart#3 of Z: " + Arrays.toString(quarterVector));
             //Calculation#1

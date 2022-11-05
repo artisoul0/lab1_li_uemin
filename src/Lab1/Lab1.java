@@ -49,12 +49,8 @@ public class Lab1 extends Thread{
         Thread2 T2 = new Thread2();
         Thread3 T3 = new Thread3();
         Thread4 T4 = new Thread4();
-//
-//        T1.semaphore = semaphore;
-//        T2.semaphore = semaphore;
-//        T3.semaphore = semaphore;
-//        T4.semaphore = semaphore;
-//
+
+
         T1.start();
         T2.start();
         T3.start();
