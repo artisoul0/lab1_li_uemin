@@ -18,7 +18,7 @@ public class Write {
     public static int[] writeVectorByOne(){
         int [] Vector = new int[size];
         for (int i = 0; i < size; i++) {
-         Vector[i] = 1;
+         Vector[i] = 1+i;
         }
         return Vector;
     }
