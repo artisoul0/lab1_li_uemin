@@ -34,14 +34,13 @@ public static int getProcessors(){
     //Create vectors and matrices
     public static int[][] MV;
     public static int[][] MC;
-    private static int[][] MM;
+    public static int[][] MM;
 
-    //Create a result vector with size N
-    private static int[] R = new int[Data.N];
-    private static int[] B;
-    private static int[] X;
-    private static int e;
-    private static int[] Z;
+    public static int[] R = new int[Data.getN()];
+    public static int[] B;
+    public static int[] X;
+    public static int e;
+    public static int[] Z;
 
 
     //Getters for all vectors and matrices
@@ -90,11 +89,6 @@ public static int getProcessors(){
     public static void adjustMM(int [][] MM){
         Data.MM = MM;
     }
-
-    public static void adjustR(int [] R){
-        Data.R = R;
-    }
-
     public static void adjustB(int [] B){
         Data.B = B;
     }
@@ -137,8 +131,9 @@ public static int getProcessors(){
 
     //Calculation Rн = d*(B * MVн) + е*Х*(MM * MCн)
 
-    public static void setResultPartOfVectorR (int di, int B, int MVi, int e, int X, int MM, int MCi ){
-        Write.writeToResult();
+    public static void setResultPartOfVectorR (int d, int []B, int [][]MV, int e, int []X, int [][]MM, int [][]MC, int start, int end ){
+        int [] finalVector = addTwoVectors(multiplyScalarAndVector(d,multiplyVectorBySubMatrix(B,MV,start,end)),multiplyVectorMatrix(multiplyScalarAndVector(e,X),multiplyMatrixAndSubMatrix(MM,MC,start,end)));
+        Write.writeToResult(finalVector,start,end);
     }
 
     //Method to multiply All Vector and SubMatrix
@@ -216,6 +211,16 @@ public static int getProcessors(){
     }
 
 
+    public static int[] multiplyVectorMatrix(int[] Vector, int[][] Matrix) {
+        int N = Data.N;
+        int[] result = new int[N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                result[i] += Vector[j] * Matrix[j][i];
+            }
+        }
+        return result;
+    }
 
 
 }

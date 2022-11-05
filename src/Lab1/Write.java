@@ -3,7 +3,7 @@ package Lab1;
 import java.util.Scanner;
 
 public class Write {
-    private static final int size = Data.getN();
+    public static final int size = Data.getN();
 
     public static int [][] writeMatrixByOne(){
         int [][] Matrix = new int[size][size];
@@ -48,9 +48,9 @@ public class Write {
         return scalar;
     }
 
-    public static void writeToResult(int[] W, int start, int end) {
+    public static void writeToResult(int[] Vector, int start, int end) {
         if (end - start >= 0) {
-            System.arraycopy(W, start, Data.getR(), start, end -
+            System.arraycopy(Vector, start, Data.getR(), start, end -
                     start);
         }
     }

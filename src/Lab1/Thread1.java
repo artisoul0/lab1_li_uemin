@@ -1,23 +1,18 @@
 package Lab1;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.Semaphore;
 
 public class Thread1 extends Thread{
-    Semaphore semaphore;
 //    MV,MC
-    private static final int size = Data.getN();
-    private int d1 = 0;
-
     public void run(){
         System.out.println("T1 started");
             Data.adjustMV(Write.writeMatrixByOne());
             Data.adjustMC(Write.writeMatrixByOne());
             System.out.println("MV" + Arrays.deepToString(Data.getMV()));
             System.out.println("MC" + Arrays.deepToString(Data.getMC()));
-
-
         try {
             Lab1.B1.await();
             int H = Data.getH();
@@ -26,13 +21,14 @@ public class Thread1 extends Thread{
             int []quarterVector = Arrays.copyOfRange(Z,0,H);
             System.out.println("Quart#1 of Z: " + Arrays.toString(quarterVector));
             //Calculation#1
-            d1 = Data.getMaxInQuarterVector(quarterVector);
+            int d1 = Data.getMaxInQuarterVector(quarterVector);
             System.out.println("d1 is :" + d1);
             //Calculation#2
             Lab1.S11.acquire();
-            Data.d.set(Data.maxScalarD(Data.d,d1));
+            Data.d.set(Data.maxScalarD(Data.d, d1));
             System.out.println("Saved max d in Data " + Data.d);
             Lab1.S11.release();
+
 
             // The signal to tasks about finishing calculation d.
             Lab1.S1.release(Data.getProcessors() - 1);
@@ -63,7 +59,11 @@ public class Thread1 extends Thread{
             Lab1.S12.release();
 
             //Calculation Rн = d*(B * MVн) + е*Х*(MM * MCн)
-
+            Data.setResultPartOfVectorR(d1,B1,Data.getMV(),e1,Data.getX(),MM1,Data.getMC(),0,Data.H);
+            System.out.println(Arrays.deepToString(Data.getMV()));
+            // The signal of calculation XH in T1.
+            Lab1.S5.release();
+            System.out.println("T1 finished");
 
 
         } catch (InterruptedException | BrokenBarrierException e) {
