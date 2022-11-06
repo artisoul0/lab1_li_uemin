@@ -40,6 +40,8 @@ public class Lab1 extends Thread{
 
     //Синхронизация T1,T3,T4 с введением данных в T2
     public static Semaphore S2 = new Semaphore(0, true);
+
+    // цей семафор можна видалити, бо він не використовується, але це вже вирішуй сам :)
     public static Semaphore S3 = new Semaphore(0, true);
 
     //Синхронизация T1,T2,T3 с введением данных в T4
@@ -66,11 +68,11 @@ public class Lab1 extends Thread{
 
     //For shared resource
 
-    //B
-    public static Semaphore S11 = new Semaphore(0, true);
+    //B (потрібно встановити початкове значення 1, а не 0, тому що з самого початку в нас має бути один доступ до цього ресурсу)
+    public static Semaphore S11 = new Semaphore(1, true);
 
-    //d
-    public static Semaphore S12 = new Semaphore(0, true);
+    //d (так само як і в S11)
+    public static Semaphore S12 = new Semaphore(1, true);
 
 
 

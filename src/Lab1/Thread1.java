@@ -21,7 +21,7 @@ public class Thread1 extends Thread{
 
             Lab1.S1.release(3);
             Lab1.S2.acquire(1);
-            Lab1.S3.acquire(1);
+//            Lab1.S3.acquire(1); не потрібно, оскільки Т3 не вводить дані
             Lab1.S4.acquire(1);
 
             int H = Data.getH();
@@ -33,8 +33,10 @@ public class Thread1 extends Thread{
             //Calculation#1
             d1 = Data.getMaxInQuarterVector(quarterVector);
             System.out.println("d1 is :" + d1);
+
             //Calculation#2
-            Data.d.set(Data.maxScalarD(Data.d, d1));
+//            Data.d.set(Data.maxScalarD(Data.d, d1)); неправильно, бо виконується в два етапи
+            Data.d.accumulateAndGet(d1, Math::max);
 
             Lab1.S5.release(3);
             Lab1.S6.acquire(1);

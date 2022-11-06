@@ -25,8 +25,10 @@ public class Thread3 extends Thread{
             //Calculation#1
             d3 = Data.getMaxInQuarterVector(quarterVector);
             System.out.println("d3 is :" + d3);
+
             //Calculation#2
-            Data.d.set(Data.maxScalarD(Data.d, d3));
+//            Data.d.set(Data.maxScalarD(Data.d, d3)); неправильно, бо виконується в два етапи
+            Data.d.accumulateAndGet(d3, Math::max);
 
             Lab1.S7.release(3);
             Lab1.S5.acquire(1);

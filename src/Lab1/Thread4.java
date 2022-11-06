@@ -27,7 +27,8 @@ public class Thread4 extends Thread{
         System.out.println("Z" + Arrays.toString(Data.getZ()));
         System.out.println("e " + Data.gete());
 
-            Lab1.S4.release(2);
+//            Lab1.S4.release(2); має бути 3, а не 2, бо в нас три потоки (Т1, Т2, Т3) очікують введення даних від Т4
+            Lab1.S4.release(3);
             Lab1.S1.acquire(1);
             Lab1.S2.acquire(1);
 
@@ -40,8 +41,10 @@ public class Thread4 extends Thread{
             //Calculation#1
             d4 = Data.getMaxInQuarterVector(quarterVector);
             System.out.println("d4 is :" + d4);
+
             //Calculation#2
-            Data.d.set(Data.maxScalarD(Data.d, d4));
+//            Data.d.set(Data.maxScalarD(Data.d, d4)); неправильно, бо виконується в два етапи
+            Data.d.accumulateAndGet(d4, Math::max);
 
             Lab1.S8.release(3);
             Lab1.S5.acquire(1);
