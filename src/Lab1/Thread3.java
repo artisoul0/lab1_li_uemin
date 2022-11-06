@@ -1,65 +1,66 @@
 package Lab1;
 
 import java.util.Arrays;
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.Semaphore;
 
 public class Thread3 extends Thread{
-    int d3 = 0;
+    private int d3 = 0;
+    private int e3;
+    private int[] X3;
+    private int[][] MM3;
+
+    private int[] B3;
     public void run(){
-        System.out.println("Task 3 started");
         try {
-            Lab1.B1.await();
+        System.out.println("Task 3 started");
+            Lab1.S1.acquire(1);
+            Lab1.S2.acquire(1);
+            Lab1.S4.acquire(1);
+
             int H = Data.getH();
             int[] Z = Data.getZ();
             //Reaching Z1
-            int []quarterVector = Arrays.copyOfRange(Z,H*2,H*3);
+            int []quarterVector = new int[H];
+            System.arraycopy(Z,H*2,quarterVector,0,H);
             System.out.println("Quart#3 of Z: " + Arrays.toString(quarterVector));
             //Calculation#1
             d3 = Data.getMaxInQuarterVector(quarterVector);
             System.out.println("d3 is :" + d3);
             //Calculation#2
+            Data.d.set(Data.maxScalarD(Data.d, d3));
+
+            Lab1.S7.release(3);
+            Lab1.S5.acquire(1);
+            Lab1.S6.acquire(1);
+            Lab1.S8.acquire(1);
+
+            synchronized (Lab1.CS1){
+                e3 = Data.e;
+            }
+
             Lab1.S11.acquire();
-            Data.d.set(Data.maxScalarD(Data.d,d3));
-            System.out.println("Saved max d in Data " + Data.d);
+            d3 = Data.d.get();
             Lab1.S11.release();
 
-            // The signal to tasks about finishing calculation d.
-            Lab1.S3.release(Data.getProcessors() - 1);
+            synchronized (Lab1.CS2){
+                X3 = Data.X;
+            }
 
-            // Wait for signals about finishing calculation d in tasks T1,T2,T4.
-            Lab1.S1.acquire();
-            Lab1.S2.acquire();
-            Lab1.S4.acquire();
-
-            //Copy e3 = e
-            Lab1.CS1.lock();
-            int e3 = Data.gete();
-            Lab1.CS1.unlock();
-
-            //Copy X3 = X
-            Lab1.CS2.lock();
-            int[] X3 = Data.getX();
-            Lab1.CS2.unlock();
-
-            //Copy MM3 = MM
-            Lab1.CS3.lock();
-            int [][] MM3 = Data.getMM();
-            Lab1.CS3.unlock();
-
-            //Copy B3 = B
             Lab1.S12.acquire();
-            int [] B3 = Data.getB();
+            B3 = Data.B;
             Lab1.S12.release();
 
+
+            synchronized (Lab1.CS3) {
+                MM3 = Data.MM;
+            }
+
+
             //Calculation Rн = d*(B * MVн) + е*Х*(MM * MCн)
-            Data.setResultPartOfVectorR(d3,B3,Data.getMV(),e3,Data.getX(),MM3,Data.getMC(),H*2,H*3);
 
-            // The signal of calculation XH in T3.
-            Lab1.S5.release();
-
+            Data.setResultPartOfVectorR(d3,B3,Data.getMV(),e3,X3,MM3,Data.getMC(),H*2,H*3);
+            Lab1.S9.release(1);
             System.out.println("T3 finished");
-        } catch (InterruptedException | BrokenBarrierException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

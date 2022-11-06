@@ -1,5 +1,6 @@
 package Lab1;
 
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Data {
@@ -133,7 +134,8 @@ public static int getProcessors(){
 
     public static void setResultPartOfVectorR (int d, int []B, int [][]MV, int e, int []X, int [][]MM, int [][]MC, int start, int end ){
         int [] finalVector = addTwoVectors(multiplyScalarAndVector(d,multiplyVectorBySubMatrix(B,MV,start,end)),multiplyVectorMatrix(multiplyScalarAndVector(e,X),multiplyMatrixAndSubMatrix(MM,MC,start,end)));
-        Write.writeToResult(finalVector,start,end);
+        System.out.println("final vector:" + Arrays.toString(finalVector));
+//        Write.writeToResult(finalVector,start,end);
     }
 
     //Method to multiply All Vector and SubMatrix
