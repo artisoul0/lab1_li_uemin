@@ -27,7 +27,7 @@ public class Write {
 
     public static void writeToResult(int[] Vector, int start, int end) {
         if (end - start >= 0) {
-            System.arraycopy(Vector, start, Data.R, start, end - start);
+//            System.arraycopy(Vector, start, Data.R, start, end - start);
         }
     }
 }
