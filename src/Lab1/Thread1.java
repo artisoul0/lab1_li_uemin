@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class Thread1 extends Thread {
 
-
     public void run() {
         try {
             System.out.println("T1 started");
@@ -16,6 +15,7 @@ public class Thread1 extends Thread {
             Lab1.S3.acquire(1);
             Lab1.S4.acquire(1);
             System.out.println("Data of T1 successfully entered");
+
             int[] Z = Data.getZ();
 
             int d1 = Data.getd();
@@ -25,11 +25,13 @@ public class Thread1 extends Thread {
 
             int []Sh = Data.partOfSh(d1,Data.getB(),Z1,Data.getMM(),0,Data.H);
             System.out.println(Arrays.toString(Sh) + " Sorted Sh in T1");
-            Data.assignNewValueToS(Sh,0,Data.N/4);
+            Data.assignNewValueToS(Sh,0,Data.H);
 
             Data.assignSortedValueToS(Data.firstSortS2h(),0,Data.N/4);
 
             Data.sortS4H();
+
+            System.out.println(Arrays.toString(Data.S));
 
 
 

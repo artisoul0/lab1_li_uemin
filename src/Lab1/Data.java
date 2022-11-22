@@ -36,7 +36,7 @@ public class Data {
     public static int[] A;
     public static int[] B;
 
-    public static int[] S = new int[Data.N];
+    public static int[] S = {0,0,0,0,0,0,0,0};
 
 
     //Shared resources

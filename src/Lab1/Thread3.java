@@ -23,10 +23,9 @@ public class Thread3 extends Thread {
             int p3 = Data.getp();
 
             int []Sh = Data.partOfSh(d3,Data.getB(),Z3,Data.getMM(),Data.H*2, Data.H*3);
-
             System.out.println(Arrays.toString(Sh) + " Sorted Sh in T3");
 
-            Data.assignNewValueToS(Sh,Data.N/2,Data.N/2 + Data.N/4);
+            Data.assignNewValueToS(Sh,Data.H*2,Data.H*3);
 
             Data.assignSortedValueToS(Data.secondSortS2h(),Data.N/2,Data.N);
 
