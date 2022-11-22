@@ -21,6 +21,15 @@ public class Thread4 extends Thread {
             int H = Data.getH();
             int[] Z = Data.getZ();
 
+            int d4 = Data.getd();
+            int[] Z4 = Data.getZ();
+            int [][] MX4 = Data.getMX();
+            int p4 = Data.getp();
+
+            int []Sh = Data.partOfSh(d4,Data.getB(),Z4,Data.getMM());
+
+            Data.assignNewValueToS(Data.S, Sh, Data.N - Data.N/4, Data.N);
+
 
 //            Lab1.S8.release(3);
 //            Lab1.S5.acquire(1);

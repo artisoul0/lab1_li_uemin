@@ -6,8 +6,8 @@ public class Thread2 extends Thread {
 
     public void run() {
         try {
-            //input values: MM, out: R
             System.out.println("Task 2 started");
+            //No input
 
 //            Lab1.S2.release(3);
 //            Lab1.S1.acquire(1);
@@ -15,9 +15,16 @@ public class Thread2 extends Thread {
 
             int H = Data.getH();
             int[] Z = Data.getZ();
+            int d2 = Data.getd();
+            int[] Z2 = Data.getZ();
+            int [][] MX2 = Data.getMX();
+            int p2 = Data.getp();
 
-            //Calculation#2
-//            Data.d.accumulateAndGet(d2, Math::max);
+            int []Sh = Data.partOfSh(d2,Data.getB(),Z2,Data.getMM());
+
+            Data.assignNewValueToS(Data.S,Sh,Data.H,Data.N/2);
+
+
 
 //            Lab1.S6.release(3);
 //            Lab1.S5.acquire(1);
@@ -48,9 +55,6 @@ public class Thread2 extends Thread {
 //                MM2 = Data.MM;
 //            }
 
-
-            //Calculation Rн = d*(B * MVн) + е*Х*(MM * MCн)
-//            Data.setResultPartOfVectorR(d2, b2, Data.MV, e2, x2, MM2, Data.MC, H, H * 2);
 //            Lab1.S9.acquire(3);
             //Output result
 //            System.out.println("R = " + Arrays.toString(Data.getR()));

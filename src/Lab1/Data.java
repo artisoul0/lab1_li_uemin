@@ -36,7 +36,7 @@ public class Data {
     public static int[] A;
     public static int[] B;
 
-    public static int [] S;
+    public static int[] S;
 
 
     //Shared resources
@@ -44,7 +44,6 @@ public class Data {
     public static int[][] MX;
     public static int[] Z;
     public static int q;
-
 
 
     //Getters for all vectors and matrices
@@ -85,7 +84,6 @@ public class Data {
     }
 
 
-
     //Setting the vectors and matrices
 
     public static void adjustMM(int[][] MM) {
@@ -115,10 +113,10 @@ public class Data {
     public static void adjustp(int p) {
         Data.p = p;
     }
+
     public static void adjustd(int d) {
         Data.d = d;
     }
-
 
 
     //The method to get a max element in vector Z
@@ -131,7 +129,6 @@ public class Data {
         }
         return scalarMaxValue;
     }
-
 
 
     //Set the part of the vector R
@@ -155,6 +152,7 @@ public class Data {
         }
         return K;
     }
+
     public static int[] vectorOnConstantMultiply(int[] vector, int b) {
         int[] resultVector = new int[Data.H];
         int j = 0;
@@ -200,15 +198,6 @@ public class Data {
         return MT;
     }
 
-    public static int[] firstPartOfSh(int d, int[] B, int[] Z, int[][] MM) {
-        int[] resultVector = vectorSum(vectorOnConstantMultiply(B,d),
-                matrixOnVectorMultiply(MM,Z));
-        vectorSort(resultVector);
-        System.out.println(Arrays.toString(resultVector) + " T1 sorted Sh");
-
-        return resultVector;
-    }
-
     public static int[] vectorSum(int[] A, int[] B) {
         int[] result = new int[A.length];
         int j = 0;
@@ -240,8 +229,7 @@ public class Data {
     }
 
 
-
-    public static synchronized void assignNewValueToS(int [] S, int[] Sh, int from, int to) {
+    public static synchronized void assignNewValueToS(int[] S, int[] Sh, int from, int to) {
         int j = 0;
 
         for (int i = from; i < to; i++) {
@@ -251,7 +239,7 @@ public class Data {
     }
 
 
-    public static synchronized void assignSortedValueToS(int []S, int[] S2h, int from, int to) {
+    public static synchronized void assignSortedValueToS(int[] S, int[] S2h, int from, int to) {
         int j = 0;
 
         for (int i = from; i < to; i++) {
@@ -272,8 +260,25 @@ public class Data {
         Arrays.sort(Data.S);
     }
 
+    public static int[] partOfSh(int d, int[] B, int[] Z, int[][] MM) {
+        int[] resultVector = vectorSum(vectorOnConstantMultiply(B, d),
+                matrixOnVectorMultiply(MM, Z));
+        vectorSort(resultVector);
+        System.out.println(Arrays.toString(resultVector) + " T1 sorted Sh");
 
+        return resultVector;
+    }
 
+    public static int[] secondSortS2h() {
+        int[] S2h = new int[Data.N / 2];
+        int j = 0;
+
+        for (int i = Data.N / 2; i < Data.N; i++) {
+            S2h[j] = Data.S[i];
+            j++;
+        }
+        return S2h;
+    }
 }
 
 

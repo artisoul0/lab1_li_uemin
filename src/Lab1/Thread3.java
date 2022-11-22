@@ -16,6 +16,17 @@ public class Thread3 extends Thread {
             int H = Data.getH();
             int[] Z = Data.getZ();
 
+            int d3 = Data.getd();
+            int[] Z3 = Data.getZ();
+            int [][] MX3 = Data.getMX();
+            int p3 = Data.getp();
+
+            int []Sh = Data.partOfSh(d3,Data.getB(),Z3,Data.getMM());
+
+            Data.assignNewValueToS(Data.S,Sh,Data.N/2,Data.N/2 + Data.N/4);
+
+            Data.assignSortedValueToS(Data.S,Data.secondSortS2h(),Data.N/2,Data.N);
+
 //            Lab1.S7.release(3);
 //            Lab1.S5.acquire(1);
 //            Lab1.S6.acquire(1);

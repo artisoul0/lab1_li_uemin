@@ -24,7 +24,7 @@ public class Thread1 extends Thread {
             int [][] MX1 = Data.getMX();
             int p1 = Data.getp();
 
-            int []Sh = Data.firstPartOfSh(d1,Data.getB(),Z1,Data.getMM());
+            int []Sh = Data.partOfSh(d1,Data.getB(),Z1,Data.getMM());
             Data.assignNewValueToS(S,Sh,0,H);
 
             Data.assignSortedValueToS(Data.firstSortS2h(),S,0,Data.N/2);
