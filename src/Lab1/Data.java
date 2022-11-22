@@ -38,6 +38,8 @@ public class Data {
     public static int[] B;
     public static int p;
 
+    public static int q;
+
 
     //Getters for all vectors and matrices
     public static int[][] getMM() {

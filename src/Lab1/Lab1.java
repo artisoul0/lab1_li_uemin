@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
 // Завдання: R = max(Z)*(B*MV)+e*X*(MM*MC)
 public class Lab1 extends Thread {
 
-    //Синхронизация T2,T3,T4 с введением данных в T1
+    //Сигнал T2,T3,T4 про введення даних в T1
     public static Semaphore S1 = new Semaphore(0, true);
 
     //Синхронизация T1,T3,T4 с введением данных в T2
