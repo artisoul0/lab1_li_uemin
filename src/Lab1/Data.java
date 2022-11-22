@@ -83,6 +83,10 @@ public class Data {
         return d;
     }
 
+    public static void setS(int [] S){
+        Data.S = S;
+    }
+
 
     //Setting the vectors and matrices
 
@@ -122,44 +126,20 @@ public class Data {
 
     //Method to multiply All Vector and SubMatrix
 
-    public static int[] multiplyVectorBySubMatrix(int[] B, int[][] MV, int
-            start, int end) {
-        int[] K = new int[N];
-        for (int i = 0; i < end - start; i++) {
-            for (int j = 0; j < N; j++) {
-                for (int k = 0; k < MV[j].length; k++) {
-                    K[k] += B[j] * MV[j][k];
-                }
-            }
-        }
-        return K;
-    }
+
 
     public static int[] vectorOnConstantMultiply(int[] vector, int b) {
-        int[] resultVector = new int[Data.H];
+        int[] resultVector = new int[Data.N /4];
         int j = 0;
 
-        for (int i = Data.N - Data.H; i < Data.N; i++) {
+        for (int i = Data.N - Data.N/4; i < Data.N; i++) {
             resultVector[j] = vector[i] * b;
             j++;
         }
         return resultVector;
     }
 
-    public static int[] multiplyScalarAndVector(int scalar, int[] Vector) {
-        int[] result = new int[Data.N];
-        for (int i = 0; i < Data.N; i++) {
-            result[i] = scalar * Vector[i];
-        }
-        return result;
-    }
 
-    private static int[] sumVector(int[] X, int[] Y, int start, int end) {
-        for (int i = start; i < end; i++) {
-            X[i] = X[i] + Y[i];
-        }
-        return X;
-    }
 
 
     //Method to multiply all Matrix and SubMatrix
@@ -184,7 +164,7 @@ public class Data {
         int[] result = new int[A.length];
         int j = 0;
 
-        for (int i = Data.getN() - Data.getH(); i < Data.getN(); i++) {
+        for (int i = Data.N - Data.N/4; i < Data.N; i++) {
             result[j] = A[j] + B[j];
             j++;
         }
@@ -193,35 +173,37 @@ public class Data {
     }
 
 
+
     private static void vectorSort(int[] A) {
         Arrays.sort(A);
     }
 
 
-    public static synchronized void assignNewValueToS(int[] Sh, int from, int to) {
+    public static void assignNewValueToS(int[] Sh, int from, int to) {
         int j = 0;
 
         for (int i = from; i < to; i++) {
+            // записує частини в S
             Data.S[i] = Sh[j];
             j++;
         }
     }
 
 
-    public static synchronized void assignSortedValueToS(int[] S2h, int from, int to) {
-        int j = 0;
-
-        for (int i = from; i < to; i++) {
-            Data.S[i] = S2h[j];
-            j++;
-        }
-    }
+//    public static void assignSortedValueToS(int[] S2h, int from, int to) {
+//        int j = 0;
+//
+//        for (int i = from; i < to; i++) {
+//            Data.S[i] = S2h[j];
+//            j++;
+//        }
+//    }
 
     public static int[] firstSortS2h() {
         int[] S2h = new int[Data.N / 2];
         System.arraycopy(Data.S, 0, S2h, 0, S2h.length);
         Arrays.sort(S2h);
-        System.out.println("T1 sort G2h " + Arrays.toString(S2h));
+        System.out.println("T1 sort S2h " + Arrays.toString(S2h));
         return S2h;
     }
 
@@ -229,14 +211,41 @@ public class Data {
         Arrays.sort(Data.S);
     }
 
-    public static int[] partOfSh(int d, int[] B, int[] Z, int[][] MM, int start, int end) {
-        int[] resultVector = vectorSum(vectorOnConstantMultiply(B, d),
-                multiplyVectorBySubMatrix(Z,MM,start,end));
+    public static int[] partOfSh(int d, int[] B, int[] Z, int[][] MM) {
+        int[] resultVector = vectorSum(vectorOnConstantMultiply(B,d), matrixOnVectorMultiply(MM,Z));
         vectorSort(resultVector);
-        System.out.println(Arrays.toString(resultVector) + " T1 sorted Sh");
+        System.out.println(Arrays.toString(resultVector));
 
         return resultVector;
     }
+
+    private static int[] matrixOnVectorMultiply(int[][] MA, int[] A) {
+        int[] result = new int[Data.N/4];
+        int k = 0;
+
+        for (int i = Data.N - Data.N/4; i < Data.N; i++) {
+            for (int j = 0; j < Data.N; j++) {
+                result[k] += MA[k][j] * A[j];
+            }
+            k++;
+        }
+
+        return result;
+    }
+
+
+//    public static int[] multiplyVectorBySubMatrix(int[] B, int[][] MV, int
+//            start, int end) {
+//        int[] K = new int[N];
+//        for (int i = 0; i < end - start; i++) {
+//            for (int j = 0; j < N; j++) {
+//                for (int k = 0; k < MV[j].length; k++) {
+//                    K[k] += B[j] * MV[j][k];
+//                }
+//            }
+//        }
+//        return K;
+//    }
 
     public static int[] secondSortS2h() {
         int[] S2h = new int[Data.N / 2];

@@ -11,6 +11,7 @@ public class Thread1 extends Thread {
             Data.adjustMM(Write.writeMatrixByOne());
             Data.adjustMX(Write.writeMatrixByOne());
             Data.adjustB(Write.writeVectorByOne());
+
             Lab1.S1.release(3);
             Lab1.S3.acquire(1);
             Lab1.S4.acquire(1);
@@ -22,16 +23,19 @@ public class Thread1 extends Thread {
             int[] Z1 = Data.getZ();
             int [][] MX1 = Data.getMX();
             int p1 = Data.getp();
+            System.out.print(d1 + " d1");
+            System.out.println(Arrays.toString(Z1) + " Z1");
+            System.out.println(Arrays.deepToString(Data.getMM()) + " MM");
+            System.out.println(p1 + " p1");
 
-            int []Sh = Data.partOfSh(d1,Data.getB(),Z1,Data.getMM(),0,Data.H);
+            int []Sh = Data.partOfSh(d1,Data.getB(),Z1,Data.getMM());
             System.out.println(Arrays.toString(Sh) + " Sorted Sh in T1");
+            //Записати нові відсортовані частини до S
             Data.assignNewValueToS(Sh,0,Data.H);
 
-            Data.assignSortedValueToS(Data.firstSortS2h(),0,Data.N/4);
-
+//            Data.assignSortedValueToS(Data.firstSortS2h(),0,Data.N/4);
             Data.sortS4H();
-
-            System.out.println(Arrays.toString(Data.S));
+//            System.out.println(Arrays.toString(new String[]{"All sorted vector: " + Arrays.toString(Data.S)}));
 
 
 

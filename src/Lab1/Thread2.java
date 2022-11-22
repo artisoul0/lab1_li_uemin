@@ -19,7 +19,7 @@ public class Thread2 extends Thread {
             int[] Z2 = Data.getZ();
             int [][] MX2 = Data.getMX();
             int p2 = Data.getp();
-            int []Sh = Data.partOfSh(d2,Data.getB(),Z2,Data.getMM(),Data.H,Data.H*2);
+            int []Sh = Data.partOfSh(d2,Data.getB(),Z2,Data.getMM());
             System.out.println(Arrays.toString(Sh) + " Sorted Sh in T2");
             Data.assignNewValueToS(Sh,Data.H,Data.H*2);
 
