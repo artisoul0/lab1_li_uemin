@@ -9,9 +9,10 @@ public class Thread3 extends Thread {
             System.out.println("Task 3 started");
             //Recording data: p
             Data.adjustp(Write.writeScalarByZero());
-//            Lab1.S1.acquire(1);
-//            Lab1.S2.acquire(1);
-//            Lab1.S4.acquire(1);
+           Lab1.S3.release(3);
+            Lab1.S1.acquire(1);
+            Lab1.S4.acquire(1);
+            System.out.println("Data of T3 successfully entered");
 
             int H = Data.getH();
             int[] Z = Data.getZ();
@@ -21,11 +22,13 @@ public class Thread3 extends Thread {
             int [][] MX3 = Data.getMX();
             int p3 = Data.getp();
 
-            int []Sh = Data.partOfSh(d3,Data.getB(),Z3,Data.getMM());
+            int []Sh = Data.partOfSh(d3,Data.getB(),Z3,Data.getMM(),Data.H*2, Data.H*3);
 
-            Data.assignNewValueToS(Data.S,Sh,Data.N/2,Data.N/2 + Data.N/4);
+            System.out.println(Arrays.toString(Sh) + " Sorted Sh in T3");
 
-            Data.assignSortedValueToS(Data.S,Data.secondSortS2h(),Data.N/2,Data.N);
+            Data.assignNewValueToS(Sh,Data.N/2,Data.N/2 + Data.N/4);
+
+            Data.assignSortedValueToS(Data.secondSortS2h(),Data.N/2,Data.N);
 
 //            Lab1.S7.release(3);
 //            Lab1.S5.acquire(1);

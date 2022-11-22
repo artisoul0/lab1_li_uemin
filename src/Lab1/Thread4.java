@@ -14,9 +14,10 @@ public class Thread4 extends Thread {
             Data.adjustZ(Write.writeVectorByOne());
             Data.adjustMT(Write.writeMatrixByOne());
             Data.adjustd(Write.writeScalarByZero());
-//            Lab1.S4.release(3);
-//            Lab1.S1.acquire(1);
-//            Lab1.S2.acquire(1);
+            Lab1.S4.release(3);
+            Lab1.S1.acquire(1);
+            Lab1.S3.acquire(1);
+            System.out.println("Data of T4 successfully entered");
 
             int H = Data.getH();
             int[] Z = Data.getZ();
@@ -26,9 +27,10 @@ public class Thread4 extends Thread {
             int [][] MX4 = Data.getMX();
             int p4 = Data.getp();
 
-            int []Sh = Data.partOfSh(d4,Data.getB(),Z4,Data.getMM());
+            int []Sh = Data.partOfSh(d4,Data.getB(),Z4,Data.getMM(),Data.H*3,Data.H*4);
+            System.out.println(Arrays.toString(Sh) + " Sorted Sh in T4");
 
-            Data.assignNewValueToS(Data.S, Sh, Data.N - Data.N/4, Data.N);
+            Data.assignNewValueToS(Sh, Data.N - Data.N/4, Data.N);
 
 
 //            Lab1.S8.release(3);

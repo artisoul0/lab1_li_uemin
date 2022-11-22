@@ -12,8 +12,8 @@ public class Lab1 extends Thread {
     //Сигнал T2,T3,T4 про введення даних в T1
     public static Semaphore S1 = new Semaphore(0, true);
 
-    //Синхронизация T1,T3,T4 с введением данных в T2
-    public static Semaphore S2 = new Semaphore(0, true);
+    //Синхронизация T1,T2,T4 с введением данных в T3
+    public static Semaphore S3 = new Semaphore(0, true);
 
     //Синхронизация T1,T2,T3 с введением данных в T4
     public static Semaphore S4 = new Semaphore(0, true);

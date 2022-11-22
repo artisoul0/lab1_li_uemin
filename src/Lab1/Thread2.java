@@ -9,9 +9,9 @@ public class Thread2 extends Thread {
             System.out.println("Task 2 started");
             //No input
 
-//            Lab1.S2.release(3);
-//            Lab1.S1.acquire(1);
-//            Lab1.S4.acquire(1);
+            Lab1.S1.acquire(1);
+            Lab1.S4.acquire(1);
+            Lab1.S3.acquire(1);
 
             int H = Data.getH();
             int[] Z = Data.getZ();
@@ -20,9 +20,9 @@ public class Thread2 extends Thread {
             int [][] MX2 = Data.getMX();
             int p2 = Data.getp();
 
-            int []Sh = Data.partOfSh(d2,Data.getB(),Z2,Data.getMM());
-
-            Data.assignNewValueToS(Data.S,Sh,Data.H,Data.N/2);
+            int []Sh = Data.partOfSh(d2,Data.getB(),Z2,Data.getMM(),Data.H,Data.H*2);
+            System.out.println(Arrays.toString(Sh) + " Sorted Sh in T2");
+            Data.assignNewValueToS(Sh,Data.N/4,Data.N/2);
 
 
 
