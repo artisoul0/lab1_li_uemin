@@ -36,6 +36,8 @@ public class Data {
     public static int[] A;
     public static int[] B;
 
+    public static int [] S;
+
 
     //Shared resources
     public static int p;
@@ -249,7 +251,7 @@ public class Data {
     }
 
 
-    public static synchronized void assignSortedValueToG(int []S, int[] S2h, int from, int to) {
+    public static synchronized void assignSortedValueToS(int []S, int[] S2h, int from, int to) {
         int j = 0;
 
         for (int i = from; i < to; i++) {
@@ -257,18 +259,22 @@ public class Data {
             j++;
         }
     }
+
+    public static int[] firstSortS2h() {
+        int[] S2h = new int[Data.N / 2];
+        System.arraycopy(Data.S, 0, S2h, 0, S2h.length);
+        Arrays.sort(S2h);
+        System.out.println("T1 sort G2h " + Arrays.toString(S2h));
+        return S2h;
+    }
+
+    public static void sortS4H() {
+        Arrays.sort(Data.S);
+    }
+
+
+
 }
-
-
-//    public static int[] firstSortG2h() {
-//        int[] G2h = new int[Data.N / 2];
-//        System.arraycopy(Main.G, 0, G2h, 0, G2h.length);
-//        Arrays.sort(G2h);
-//        System.out.println("T1 sort G2h " + Arrays.toString(G2h));
-//        return G2h;
-//    }
-
-
 
 
 
