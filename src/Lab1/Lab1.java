@@ -4,9 +4,9 @@ import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 //Лабораторна робота №ЛР1
-//Виконав студент групи ІО-03 Веруга Юрій
-// Мій варіант завдання: 21
-// Завдання: R = max(Z)*(B*MV)+e*X*(MM*MC)
+//Виконав студент групи ІО-06 Лі Юемін
+// Мій варіант завдання: 16
+// Завдання: A = p*sort(d*B+Z*MM) * (MX*MT) + (B*Z)*Z
 public class Lab1 extends Thread {
 
     //Сигнал T2,T3,T4 про введення даних в T1
@@ -45,11 +45,11 @@ public class Lab1 extends Thread {
 
 
     //Critical sections
-    //For e
+    //For p
     public static final Object CS1 = new Object();
-    //For X
+    //For d
     public static final Object CS2 = new Object();
-    //For MM
+    //For Z
     public static final Object CS3 = new Object();
 
     public static void main(String[] args) throws InterruptedException {
