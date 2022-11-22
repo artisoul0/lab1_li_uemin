@@ -31,11 +31,9 @@ public class Thread4 extends Thread {
 
             Data.assignNewValueToS(Sh,Data.H*3,Data.H*4);
 
+            Lab1.S6.release();
+            Lab1.S8.acquire();
 
-//            Lab1.S8.release(3);
-//            Lab1.S5.acquire(1);
-//            Lab1.S6.acquire(1);
-//            Lab1.S7.acquire(1);
 
             int e4;
 //            synchronized (Lab1.CS1) {

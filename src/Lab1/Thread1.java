@@ -33,18 +33,12 @@ public class Thread1 extends Thread {
             //Записати нові відсортовані частини до S
             Data.assignNewValueToS(Sh,0,Data.H);
 
-//            Data.assignSortedValueToS(Data.firstSortS2h(),0,Data.N/4);
+            Lab1.S5.acquire();
+            Data.assignSortedValueToS(Data.firstSortS2h(),0,Data.N/4);
+            Lab1.S7.acquire();
             Data.sortS4H();
-//            System.out.println(Arrays.toString(new String[]{"All sorted vector: " + Arrays.toString(Data.S)}));
+            Lab1.S8.release(3);
 
-
-
-
-
-//            Lab1.S5.release(3);
-//            Lab1.S6.acquire(1);
-//            Lab1.S7.acquire(1);
-//            Lab1.S8.acquire(1);
 
 
 //            int e1;

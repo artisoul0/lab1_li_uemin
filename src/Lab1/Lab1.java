@@ -9,31 +9,39 @@ import java.util.concurrent.Semaphore;
 // Завдання: A = p*sort(d*B+Z*MM) * (MX*MT) + (B*Z)*Z
 public class Lab1 extends Thread {
 
-    //Сигнал T2,T3,T4 про введення даних в T1
+    //Синхронізація T2,T3,T4 з введенням даних в T1
     public static Semaphore S1 = new Semaphore(0, true);
 
-    //Синхронизация T1,T2,T4 с введением данных в T3
+    //Синхронізація T1,T2,T4 з введенням даних в T3
     public static Semaphore S3 = new Semaphore(0, true);
 
-    //Синхронизация T1,T2,T3 с введением данных в T4
+    //Синхронізація T1,T2,T3 з введенням даних в T4
     public static Semaphore S4 = new Semaphore(0, true);
 
-    //Синхронизация T2,T3,T4 с вычислением d в T1
+    //для синхронізації з завершення обчислення SH в T2
 
     public static Semaphore S5 = new Semaphore(0, true);
 
-    //Синхронизация T1,T3,T4 с вычислением d в T2
+    //для синхронізації з завершення обчислення SH в T4
 
     public static Semaphore S6 = new Semaphore(0, true);
 
 
-    //Синхронизация T1,T2,T4 с вычислением d в T3
+    //для синхронізації з завершення обчислення S2H в T3
     public static Semaphore S7 = new Semaphore(0, true);
 
-    //Синхронизация T1,T2,T3 с вычислением d в T4
+    //для синхронізації з завершення обчислення S в T1
     public static Semaphore S8 = new Semaphore(0, true);
-    //Синхронизация T2 из завершением вычислений в потоках T2,T3,T4
+
+
+    //для синхронізації з завершення обчислень в Т1
     public static Semaphore S9 = new Semaphore(0, true);
+
+    //для синхронізації з завершення обчислень в Т1
+    public static Semaphore S10 = new Semaphore(0, true);
+
+    //для синхронізації з завершення обчислень в Т1
+    public static Semaphore S13 = new Semaphore(0, true);
 
     //For shared resource
 

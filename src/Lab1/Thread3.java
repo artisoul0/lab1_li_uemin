@@ -26,8 +26,12 @@ public class Thread3 extends Thread {
             System.out.println(Arrays.toString(Sh) + " Sorted Sh in T3");
 
             Data.assignNewValueToS(Sh,Data.H*2,Data.H*3);
+            Lab1.S6.acquire();
 
-//            Data.assignSortedValueToS(Data.secondSortS2h(),Data.N/2,Data.N);
+            Data.assignSortedValueToS(Data.secondSortS2h(),Data.N/2,Data.N);
+
+            Lab1.S7.release();
+            Lab1.S8.acquire();
 
 //            Lab1.S7.release(3);
 //            Lab1.S5.acquire(1);

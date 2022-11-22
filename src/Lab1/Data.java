@@ -190,14 +190,14 @@ public class Data {
     }
 
 
-//    public static void assignSortedValueToS(int[] S2h, int from, int to) {
-//        int j = 0;
-//
-//        for (int i = from; i < to; i++) {
-//            Data.S[i] = S2h[j];
-//            j++;
-//        }
-//    }
+    public static void assignSortedValueToS(int[] S2h, int from, int to) {
+        int j = 0;
+
+        for (int i = from; i < to; i++) {
+            Data.S[i] = S2h[j];
+            j++;
+        }
+    }
 
     public static int[] firstSortS2h() {
         int[] S2h = new int[Data.N / 2];

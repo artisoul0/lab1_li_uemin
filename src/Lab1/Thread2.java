@@ -22,6 +22,8 @@ public class Thread2 extends Thread {
             int []Sh = Data.partOfSh(d2,Data.getB(),Z2,Data.getMM());
             System.out.println(Arrays.toString(Sh) + " Sorted Sh in T2");
             Data.assignNewValueToS(Sh,Data.H,Data.H*2);
+            Lab1.S5.release();
+            Lab1.S8.acquire();
 
 
 
