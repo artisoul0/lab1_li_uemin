@@ -44,7 +44,9 @@ public class Thread3 extends Thread {
             Lab1.S15.acquire(1);
             Lab1.S17.acquire(1);
 
-            System.out.println(Data.getq() + " T3 q");
+            int[] Ah = Data.calculateAh(p3,Data.S,MX3,Data.getMT(),Data.q,Z3,Data.H*2,Data.H*3);
+
+            System.out.println(Arrays.toString(Ah) + " T3 Ah");
 
 //            Lab1.S7.release(3);
 //            Lab1.S5.acquire(1);

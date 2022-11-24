@@ -2,7 +2,6 @@ package Lab1;
 
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Data {
     public static int N; //size of vectors and matrices
@@ -128,10 +127,6 @@ public class Data {
 
 
 
-    //Method to multiply All Vector and SubMatrix
-
-
-
     public static int[] vectorOnConstantMultiply(int[] vector, int b) {
         int[] resultVector = new int[Data.N /4];
         int j = 0;
@@ -238,18 +233,18 @@ public class Data {
     }
 
 
-//    public static int[] multiplyVectorBySubMatrix(int[] B, int[][] MV, int
-//            start, int end) {
-//        int[] K = new int[N];
-//        for (int i = 0; i < end - start; i++) {
-//            for (int j = 0; j < N; j++) {
-//                for (int k = 0; k < MV[j].length; k++) {
-//                    K[k] += B[j] * MV[j][k];
-//                }
-//            }
-//        }
-//        return K;
-//    }
+    public static int[] multiplyVectorBySubMatrix(int[] B, int[][] MV, int
+            start, int end) {
+        int[] K = new int[N];
+        for (int i = 0; i < end - start; i++) {
+            for (int j = 0; j < N; j++) {
+                for (int k = 0; k < MV[j].length; k++) {
+                    K[k] += B[j] * MV[j][k];
+                }
+            }
+        }
+        return K;
+    }
 
     public static int[] secondSortS2h() {
         int[] S2h = new int[Data.N / 2];
@@ -272,6 +267,28 @@ public class Data {
         return resultScalar;
 
     }
+
+    public static int[] calculateAh(int p, int [] S, int [][] MX, int [][]MT, int q, int []Z, int start, int end){
+        int[] Ah = sumVector(multiplyVectorBySubMatrix(multiplySubVectorByConstant(p,S,start,end), multiplyMatrixAndSubMatrix(MX,MT,start,end),start,end), multiplySubVectorByConstant(q,Z,start,end),start,end);
+        return Ah;
+    }
+
+    private static int[] multiplySubVectorByConstant(int a, int[] C, int
+            start, int end) {
+        for (int i = start; i < end; i++) {
+            C[i] *= a;
+        }
+        return C;
+    }
+
+
+    private static int[] sumVector(int[] X, int[] Y, int start, int end) {
+        for (int i = start; i < end; i++) {
+            X[i] = X[i] + Y[i];
+        }
+        return X;
+    }
+
 
 }
 
