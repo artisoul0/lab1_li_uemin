@@ -43,6 +43,23 @@ public class Lab1 extends Thread {
     //для синхронізації з завершення обчислень в Т1
     public static Semaphore S13 = new Semaphore(0, true);
 
+
+    //для синхронізації з завершення обчислення q в Т1
+
+    public static Semaphore S14 = new Semaphore(0, true);
+
+    //для синхронізації з завершення обчислення q в Т2
+
+    public static Semaphore S15 = new Semaphore(0, true);
+
+    //для синхронізації з завершення обчислення q в Т3
+
+    public static Semaphore S16 = new Semaphore(0, true);
+
+    //для синхронізації з завершення обчислення q в Т4
+
+    public static Semaphore S17 = new Semaphore(0, true);
+
     //For shared resource
 
     //B
@@ -50,6 +67,7 @@ public class Lab1 extends Thread {
 
     //d
     public static Semaphore S12 = new Semaphore(1, true);
+
 
 
     //Critical sections

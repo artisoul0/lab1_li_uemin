@@ -33,6 +33,19 @@ public class Thread3 extends Thread {
             Lab1.S7.release();
             Lab1.S8.acquire();
 
+
+            //Обчислення q3
+            int q = Data.q;
+            q += Data.multiplySubVectorBySubVector(Data.getB(),Z3,Data.H*2,Data.H*3);
+            Data.setq(q);
+
+            Lab1.S16.release(3);
+            Lab1.S14.acquire(1);
+            Lab1.S15.acquire(1);
+            Lab1.S17.acquire(1);
+
+            System.out.println(Data.getq() + " T3 q");
+
 //            Lab1.S7.release(3);
 //            Lab1.S5.acquire(1);
 //            Lab1.S6.acquire(1);

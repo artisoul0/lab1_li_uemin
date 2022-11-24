@@ -26,6 +26,19 @@ public class Thread2 extends Thread {
             Lab1.S8.acquire();
 
 
+            //Обчислення q2
+            int q = Data.q;
+            q += Data.multiplySubVectorBySubVector(Data.getB(),Z2,Data.H,Data.H*2);
+            Data.setq(q);
+
+            Lab1.S15.release(3);
+            Lab1.S14.acquire(1);
+            Lab1.S16.acquire(1);
+            Lab1.S17.acquire(1);
+
+            System.out.println(Data.getq() + " T2 q");
+
+
 
 //            Lab1.S6.release(3);
 //            Lab1.S5.acquire(1);

@@ -43,7 +43,7 @@ public class Data {
     public static int p;
     public static int[][] MX;
     public static int[] Z;
-    public static int q;
+    public static int q = 0;
 
 
     //Getters for all vectors and matrices
@@ -120,6 +120,10 @@ public class Data {
 
     public static void adjustd(int d) {
         Data.d = d;
+    }
+
+    public static void setq(int q) {
+        Data.q = q;
     }
 
 
@@ -257,7 +261,20 @@ public class Data {
         }
         return S2h;
     }
+
+
+
+    public static int multiplySubVectorBySubVector(int [] B, int [] Z, int start, int end){
+        int resultScalar = 0;
+        for (int i = start; i < end; i++) {
+            resultScalar += B[i] * Z[i];
+        }
+        return resultScalar;
+
+    }
+
 }
+
 
 
 

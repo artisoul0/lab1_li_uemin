@@ -35,6 +35,19 @@ public class Thread4 extends Thread {
             Lab1.S8.acquire();
 
 
+            //Обчислення q4
+            int q = Data.q;
+            q += Data.multiplySubVectorBySubVector(Data.getB(),Z4,Data.H*3,Data.H*4);
+            Data.setq(q);
+
+            Lab1.S17.release(3);
+            Lab1.S14.acquire(1);
+            Lab1.S15.acquire(1);
+            Lab1.S16.acquire(1);
+
+            System.out.println(Data.getq() + " T4 q");
+
+
             int e4;
 //            synchronized (Lab1.CS1) {
 //                e4 = Data.e;

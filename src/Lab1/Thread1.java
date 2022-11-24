@@ -17,7 +17,6 @@ public class Thread1 extends Thread {
             Lab1.S4.acquire(1);
             System.out.println("Data of T1 successfully entered");
 
-            int[] Z = Data.getZ();
 
             int d1 = Data.getd();
             int[] Z1 = Data.getZ();
@@ -38,6 +37,19 @@ public class Thread1 extends Thread {
             Lab1.S7.acquire();
             Data.sortS4H();
             Lab1.S8.release(3);
+
+            //Обчислення q1
+            int q = Data.q;
+            q += Data.multiplySubVectorBySubVector(Data.getB(),Z1,0,Data.H);
+            Data.setq(q);
+
+            Lab1.S14.release(3);
+            Lab1.S15.acquire(1);
+            Lab1.S16.acquire(1);
+            Lab1.S17.acquire(1);
+
+            System.out.println(Data.getq() + " T1 q");
+
 
 
 
